@@ -3,6 +3,7 @@ package com.example.mobiledevproject
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +16,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: FoodAdapter
+    private lateinit var tvTotalCalories: TextView
     private val foodList = mutableListOf<FoodEntry>()
+    private var totalCalories = 0
 
     private val addFoodLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -25,15 +28,17 @@ class MainActivity : AppCompatActivity() {
             val newFood = data?.getSerializableExtra("newFood") as? FoodEntry
             newFood?.let {
                 foodList.add(it)
+                totalCalories += it.calories
+                tvTotalCalories.text = "Total Calories: $totalCalories"
                 adapter.notifyItemInserted(foodList.size - 1)
             }
         }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        tvTotalCalories = findViewById(R.id.tvTotalCalories)
         recyclerView = findViewById(R.id.recyclerViewItems)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
