@@ -3,28 +3,47 @@ package com.example.mobiledevproject
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.example.mobiledevproject.ui.theme.MobileDevProjectTheme
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mobiledevproject.adapter.FoodAdapter
+import com.example.mobiledevproject.model.FoodEntry
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: FoodAdapter
+    private val foodList = mutableListOf<FoodEntry>()
+
+    private val addFoodLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val data = result.data
+            val newFood = data?.getSerializableExtra("newFood") as? FoodEntry
+            newFood?.let {
+                foodList.add(it)
+                adapter.notifyItemInserted(foodList.size - 1)
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            MobileDevProjectTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MainScreen(Modifier.padding(innerPadding))
-                }
-            }
+        setContentView(R.layout.activity_main)
+
+        recyclerView = findViewById(R.id.recyclerViewItems)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        adapter = FoodAdapter(foodList)
+        recyclerView.adapter = adapter
+
+        val fabAddFood = findViewById<FloatingActionButton>(R.id.fabAddFood)
+        fabAddFood.setOnClickListener {
+            val intent = Intent(this, FoodEntryActivity::class.java)
+            addFoodLauncher.launch(intent)
         }
     }
 
@@ -33,29 +52,8 @@ class MainActivity : ComponentActivity() {
         val prefs = getSharedPreferences("UserData", Context.MODE_PRIVATE)
         val isLoggedIn = prefs.getBoolean("loggedIn", false)
         if (!isLoggedIn) {
-            val intent = Intent(this@MainActivity, LoginActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
-    }
-}
-
-@Composable
-fun MainScreen(modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(24.dp),
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(text = "Welcome to Calorie Tracker!")
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun MainScreenPreview() {
-    MobileDevProjectTheme {
-        MainScreen()
     }
 }
