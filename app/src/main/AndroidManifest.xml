@@ -16,12 +16,13 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false"
-            />
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" />
 
         <activity
-            android:name=".activity_register"
-            android:exported="false" />
-
+            android:name=".RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" />
+        <!-- Main activity (launcher) -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -29,7 +30,6 @@
             android:theme="@style/Theme.MobileDevProject">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
