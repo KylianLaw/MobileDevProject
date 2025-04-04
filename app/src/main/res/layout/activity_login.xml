@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding = "20dp"
+    android:layout_height = "match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/etLoginEmail"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/etLoginPassword"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:hint="Password"
+        android:inputType="textPassword" />
+
+
+    <Button
+        android:id = "@+id/btnLogin"
+        android:text = "Login"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+
+    <TextView
+        android:id = "@+id/tvGoToRegister"
+        android:text = "No account? Register here"
+        android:textColor="#2196F3"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
