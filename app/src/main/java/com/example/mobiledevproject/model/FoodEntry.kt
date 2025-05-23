@@ -10,5 +10,7 @@ data class FoodEntry(
     val name: String,
     val calories: Int,
     val isUserEntry: Boolean = false,
-    val timestamp: Long = System.currentTimeMillis()
+    val timestamp: Long = System.currentTimeMillis(),
+    val latitude: Double? = null,
+    val longitude: Double? = null
 ): Serializable

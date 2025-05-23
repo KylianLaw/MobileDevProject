@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+    <resources>
+        <string android:name="calorie_goal_reached_title" tools:ignore="ExtraText">Goal Reached!</string>
+        <string android:name="calorie_goal_reached_text">You’ve reached your calorie goal for today!</string>
+    </resources>
+</selector>

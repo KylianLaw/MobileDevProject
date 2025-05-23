@@ -132,6 +132,7 @@
             android:layout_height="wrap_content"
             android:text="Add Exercise" />
 
+
         <!-- Exercise Log -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewExercises"
@@ -139,6 +140,13 @@
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
             android:layout_marginBottom="16dp" />
+        <Button
+            android:id="@+id/btnOpenMap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Open Map" />
+
+
 
     </LinearLayout>
 </ScrollView>

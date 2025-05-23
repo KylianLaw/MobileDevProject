@@ -60,13 +60,16 @@ dependencies {
     // Google Maps & Places
     implementation("com.google.android.libraries.places:places:3.3.0")
     implementation("com.google.android.libraries.places:places:3.4.0")
-
     implementation ("com.google.android.gms:play-services-maps:19.2.0")
 
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     kapt(libs.room.compiler)
     testImplementation(libs.junit)
+    testImplementation("org.mockito:mockito-core:5.2.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
+    testImplementation("junit:junit:4.13.2")
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <!-- Required Permissions -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -17,34 +18,35 @@
         android:theme="@style/Theme.MobileDevProject"
         tools:targetApi="31">
 
-        <!-- Activity for entering a food item -->
+        <!-- Google Maps API Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCBJqDAweFJUVEXUopLLPVHu_MJsKRd8m0" />
+
+        <!-- App Activities -->
         <activity
             android:name=".FoodEntryActivity"
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" />
 
-        <!-- Login screen -->
         <activity
             android:name=".LoginActivity"
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" />
 
-        <!-- Register screen -->
         <activity
             android:name=".RegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" />
 
-
-        <!-- Google Maps API Key -->
-            <meta-data
-                android:name="com.google.android.geo.API_KEY"
-                android:value="..."
-                />
-
-        <!-- Main (launcher) activity -->
         <activity
-            android:name=".MainActivity"
+            android:name=".MapActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar" />
+
+        <!-- Main Launcher -->
+        <activity
+            android:name=".LauncherActivity"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
             <intent-filter>
@@ -52,6 +54,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <activity android:name=".MainActivity" android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"/>
+
+
+    </application>
 </manifest>

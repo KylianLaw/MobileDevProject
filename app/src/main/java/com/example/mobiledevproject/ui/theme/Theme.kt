@@ -25,7 +25,6 @@ private val LightColorScheme = lightColorScheme(
     primary = Purple40,
     secondary = PurpleGrey40,
     tertiary = Pink40
-    // You can uncomment and override more default colors here if needed
 )
 
 @Composable

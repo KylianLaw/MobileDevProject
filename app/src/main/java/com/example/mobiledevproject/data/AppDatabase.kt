@@ -7,12 +7,9 @@ import androidx.room.RoomDatabase
 import com.example.mobiledevproject.model.FoodEntry
 import com.example.mobiledevproject.model.ExerciseEntry
 
-@Database(
-    entities = [FoodEntry::class, ExerciseEntry::class],
-    version = 4,
-    exportSchema = false
-)
+@Database(entities = [FoodEntry::class, ExerciseEntry::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
+
 
     abstract fun foodDao(): FoodDao
     abstract fun exerciseDao(): ExerciseDao
