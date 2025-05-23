@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // UI Bindings
         tvCalorieGoal = findViewById(R.id.tvCalorieGoal)
         tvTotalCalories = findViewById(R.id.tvTotalCalories)
         tvProgressText = findViewById(R.id.progressText)
@@ -96,16 +97,19 @@ class MainActivity : AppCompatActivity() {
         tvExerciseBurned = findViewById(R.id.tvExerciseBurned)
         toggleSuggestionsBtn = findViewById(R.id.btnToggleSuggestions)
 
+        // Food List
         adapter = FoodAdapter(foodList)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 
+        // Exercise Log List
         exerciseAdapter = ExerciseAdapter(addedExercises.toMutableList()) { exercise ->
             lifecycleScope.launch { db.exerciseDao().update(exercise) }
         }
         rvExercises.layoutManager = LinearLayoutManager(this)
         rvExercises.adapter = exerciseAdapter
 
+        // Exercise Suggestions List
         suggestionAdapter = ExerciseSuggestionAdapter(mutableListOf()) { exercise ->
             val newExercise = exercise.copy(isUserEntry = true)
             lifecycleScope.launch { db.exerciseDao().insert(newExercise) }
@@ -142,6 +146,7 @@ class MainActivity : AppCompatActivity() {
             addFoodLauncher.launch(Intent(this, FoodEntryActivity::class.java))
         }
 
+        // Insert sample data on first launch
         lifecycleScope.launch {
             if (db.foodDao().getCount() == 0) {
                 db.foodDao().insertAll(
@@ -167,8 +172,6 @@ class MainActivity : AppCompatActivity() {
                         FoodEntry(name = "Croissant", calories = 231),
                         FoodEntry(name = "Oatmeal", calories = 150),
                         FoodEntry(name = "Malick (Muscle Mass)", calories = 10000)
-
-
                     )
                 )
             }
@@ -198,10 +201,12 @@ class MainActivity : AppCompatActivity() {
                 )
             }
 
+            // Update suggestions list
             val suggestions = db.exerciseDao().getExerciseSuggestions()
             suggestionAdapter.updateList(suggestions)
         }
 
+        // Load food entries
         lifecycleScope.launch {
             db.foodDao().getUserFoods().collect { foods ->
                 foodList.clear()
@@ -212,6 +217,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Load added exercises
         lifecycleScope.launch {
             db.exerciseDao().getUserExercises().collect { userExercises ->
                 addedExercises.clear()

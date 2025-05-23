@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Food List -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewItems"
             android:layout_width="match_parent"
@@ -19,6 +20,7 @@
             android:clipToPadding="false"
             android:paddingBottom="8dp" />
 
+        <!-- Calories & Goal -->
         <TextView
             android:id="@+id/tvTotalCalories"
             android:layout_width="match_parent"
@@ -37,6 +39,7 @@
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
 
+        <!-- Progress Bar -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -48,7 +51,7 @@
                 android:layout_height="20dp"
                 android:max="100"
                 android:progress="0"
-                android:progressDrawable="@drawable/progress_gradient"/>
+                android:progressDrawable="@drawable/progress_gradient" />
 
             <TextView
                 android:id="@+id/progressText"
@@ -57,9 +60,10 @@
                 android:gravity="center"
                 android:text="0%"
                 android:textStyle="bold"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#FFFFFF" />
         </FrameLayout>
 
+        <!-- Add Food -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAddFood"
             android:layout_width="wrap_content"
@@ -76,13 +80,14 @@
             android:text="Set Calorie Goal"
             android:layout_marginTop="12dp" />
 
+        <!-- Exercise Section -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Exercise Checklist"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:layout_marginTop="24dp"/>
+            android:layout_marginTop="24dp" />
 
         <AutoCompleteTextView
             android:id="@+id/etExercise"
@@ -102,6 +107,7 @@
             android:textColor="#333333"
             android:textSize="16sp" />
 
+        <!-- Toggle Suggestions -->
         <Button
             android:id="@+id/btnToggleSuggestions"
             android:layout_width="wrap_content"
@@ -109,6 +115,7 @@
             android:text="Show suggestions"
             android:layout_margin="8dp" />
 
+        <!-- Exercise Suggestions List -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewExerciseSuggestions"
             android:layout_width="match_parent"
@@ -118,18 +125,20 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp" />
 
+        <!-- Add Exercise -->
         <Button
             android:id="@+id/btnAddExercise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add Exercise" />
 
+        <!-- Exercise Log -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewExercises"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:nestedScrollingEnabled="false"/>
+            android:nestedScrollingEnabled="false"
+            android:layout_marginBottom="16dp" />
 
     </LinearLayout>
 </ScrollView>
